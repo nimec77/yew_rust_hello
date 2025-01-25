@@ -1,8 +1,12 @@
 use gloo::console::log;
 use serde::{Deserialize, Serialize};
-use stylist::style;
+use std::str::FromStr;
+use stylist::ast::Sheet;
 use stylist::yew::styled_component;
+use stylist::Style;
 use yew::{html, Html};
+
+const STYLE_FILE: &str = include_str!("styles/main.css");
 
 #[derive(Serialize, Deserialize)]
 struct MyObject {
@@ -11,16 +15,9 @@ struct MyObject {
 }
 #[styled_component]
 pub fn App() -> Html {
-    let stylesheets = style!(
-        r#"
-            background-color: black;
-            color: aqua;
+    let sheet = Sheet::from_str(STYLE_FILE).unwrap();
+    let stylesheets = Style::new(sheet).unwrap();
 
-            h1 {
-                color: white;
-            }
-        "#
-    ).unwrap();
     let name = "Dmitry";
     let my_object = MyObject {
         username: "Dmitry".to_owned(),
@@ -30,18 +27,13 @@ pub fn App() -> Html {
     log!("My name is ", name);
     log!(serde_json::to_string_pretty(&my_object).unwrap());
 
-    let my_class = "my-class";
     let message = Some("I am a message");
     let tasks = vec!["Learn Rust", "Learn Yew", "Build cool stuff"];
 
     html! {
         <div class={stylesheets}>
-            <h1 class={my_class}>{"Hello, World!!!"}</h1>
-            if my_class == "my-class" {
-                <p>{"The class is my-class"}</p>
-            } else {
-                <p>{"The class is not my-class"}</p>
-            }
+            <h1>{"Hello, World!!!"}</h1>
+            <p>{"The class is my-class"}</p>
 
             if let Some(message) = message {
                 <p>{message}</p>
