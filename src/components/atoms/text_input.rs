@@ -10,9 +10,12 @@ pub struct Props {
 #[function_component(TextInput)]
 pub fn text_input(props: &Props) -> Html {
     let onchange = Callback::from(|event: Event| {
-        let target = event.target().unwrap();
-        let input = target.unchecked_into::<HtmlInputElement>();
-        log!(input.value());
+        let value = event
+            .target()
+            .unwrap()
+            .unchecked_into::<HtmlInputElement>()
+            .value();
+        log!(value);
     });
     html! {
         <input
