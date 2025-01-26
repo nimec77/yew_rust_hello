@@ -4,6 +4,7 @@ use yew::prelude::*;
 mod components;
 
 use components::atoms::main_title::{Color, MainTitle};
+use crate::components::molecules::custom_form::CustomForm;
 
 #[styled_component]
 pub fn App() -> Html {
@@ -15,6 +16,7 @@ pub fn App() -> Html {
                 color={Color::Ok}
                 on_load={main_title_load}
             />
+            <CustomForm />
         </div>
     }
 }
