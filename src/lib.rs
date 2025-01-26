@@ -1,38 +1,25 @@
-use gloo::console::log;
-use serde::{Deserialize, Serialize};
 use std::str::FromStr;
 use stylist::ast::Sheet;
 use stylist::yew::styled_component;
 use stylist::Style;
-use yew::{html, Html};
+use yew::prelude::*;
+mod components;
+
+use components::atoms::main_title::MainTitle;
 
 const STYLE_FILE: &str = include_str!("styles/main.css");
 
-#[derive(Serialize, Deserialize)]
-struct MyObject {
-    username: String,
-    favorite_language: String,
-}
 #[styled_component]
 pub fn App() -> Html {
     let sheet = Sheet::from_str(STYLE_FILE).unwrap();
     let stylesheets = Style::new(sheet).unwrap();
-
-    let name = "Dmitry";
-    let my_object = MyObject {
-        username: "Dmitry".to_owned(),
-        favorite_language: "Rust".to_owned(),
-    };
-
-    log!("My name is ", name);
-    log!(serde_json::to_string_pretty(&my_object).unwrap());
 
     let message = Some("I am a message");
     let tasks = vec!["Learn Rust", "Learn Yew", "Build cool stuff"];
 
     html! {
         <div class={stylesheets}>
-            <h1>{"Hello, World!!!"}</h1>
+            <MainTitle title="Hi there!" />
             <p>{"The class is my-class"}</p>
 
             if let Some(message) = message {
