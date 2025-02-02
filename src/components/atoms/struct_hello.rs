@@ -1,6 +1,19 @@
+use stylist::{style, Style};
 use yew::prelude::*;
+
 pub struct StructHello {
     pub message: String,
+    pub stylesheet: Style,
+}
+
+impl StructHello {
+    fn style() -> Style {
+        style!(
+            r#"
+            color: green;
+            "#
+        ).unwrap()
+    }
 }
 
 impl Component for StructHello {
@@ -10,16 +23,14 @@ impl Component for StructHello {
 
     fn create(_ctx: &Context<Self>) -> Self {
         Self {
-            message: "Hello World from a Struct!".to_string(),
+            message: "Hello World from a Struct!".to_owned(),
+            stylesheet: Self::style(),
         }
     }
 
     fn view(&self, _ctx: &Context<Self>) -> Html {
-        html! {
-            
-            <h1>{&self.message}</h1>
+        html! {            
+            <h1 class={self.stylesheet.clone()}>{&self.message}</h1>
         }
     }
 }
-
-
