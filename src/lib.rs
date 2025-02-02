@@ -19,6 +19,16 @@ pub struct User {
 pub fn App() -> Html {
     let user_state = use_state(User::default);
     let main_title_load = Callback::from(|message: String| log!(message));
+    let first_load = use_state(|| true);
+
+    use_effect(move || {
+        if *first_load {
+            first_load.set(false);
+        }
+
+        || {}
+    });
+
     let custom_form_submit = {
         let user_state = user_state.clone();
         Callback::from(move |data: Data| {
@@ -28,6 +38,7 @@ pub fn App() -> Html {
             user_state.set(user);
         })
     };
+
     html! {
         <ContextProvider<User> context={user_state.deref().clone()}>
             <MainTitle
