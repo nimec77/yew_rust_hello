@@ -1,0 +1,75 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+    
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in library 'hello_world_in_rust'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--lib",
+                    "--package=hello_world_in_rust"
+                ],
+                "filter": {
+                    "name": "hello_world_in_rust",
+                    "kind": "lib"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'hello_world_in_rust'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=hello_world_in_rust",
+                    "--package=hello_world_in_rust"
+                ],
+                "filter": {
+                    "name": "hello_world_in_rust",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'hello_world_in_rust'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=hello_world_in_rust",
+                    "--package=hello_world_in_rust"
+                ],
+                "filter": {
+                    "name": "hello_world_in_rust",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Run trunk serve",
+            "program": "trunk",
+            "args": [
+                "serve"
+            ],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

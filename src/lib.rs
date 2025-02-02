@@ -1,13 +1,16 @@
 mod components;
+mod router;
 
 use gloo::console::log;
 use std::ops::Deref;
 use stylist::yew::styled_component;
 use yew::ContextProvider;
 use yew::prelude::*;
+use yew_router::prelude::*;
 
 use crate::components::molecules::custom_form::{CustomForm, Data};
-use components::atoms::main_title::{Color, MainTitle};
+use crate::components::atoms::main_title::{Color, MainTitle};
+use crate::router::{Route, switch};
 
 #[derive(Debug, Clone, PartialEq, Default)]
 pub struct User {
@@ -47,6 +50,9 @@ pub fn App() -> Html {
                 on_load={main_title_load}
             />
             <CustomForm  onsubmit={custom_form_submit} />
+            <BrowserRouter>
+            <Switch<Route> render={switch} />
+            </BrowserRouter>
         </ContextProvider<User>>
     }
 }
