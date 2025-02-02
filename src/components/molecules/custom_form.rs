@@ -1,6 +1,6 @@
-use std::ops::Deref;
 use crate::components::atoms::text_input::TextInput;
 use crate::components::molecules::custom_button::CustomButton;
+use std::ops::Deref;
 use yew::prelude::*;
 
 #[derive(Clone, Default)]
@@ -15,9 +15,10 @@ pub fn custom_form() -> Html {
 
     let cloned_state = state.clone();
     let username_change = Callback::from(move |username: String| {
-        let mut data = cloned_state.deref().clone();
-        data.username = username;
-        cloned_state.set(data);
+        cloned_state.set(Data {
+            username,
+            ..cloned_state.deref().clone()
+        });
     });
 
     let cloned_state = state.clone();
