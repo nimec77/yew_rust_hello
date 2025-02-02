@@ -1,5 +1,4 @@
-use crate::components::atoms::text_input::TextInput;
-use crate::components::molecules::custom_button::CustomButton;
+use crate::components::atoms::{text_input::TextInput, custom_button::CustomButton};
 use std::ops::Deref;
 use yew::prelude::*;
 use crate::User;

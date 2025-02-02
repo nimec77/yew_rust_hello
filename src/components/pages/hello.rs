@@ -1,4 +1,3 @@
-use gloo::console::log;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
@@ -12,10 +11,10 @@ pub fn Hello() -> Html {
         navigator.push(&Route::Home);
     });
 
-    html! { 
+    html! {
         <div>
             <h1>{"Hello"}</h1>
             <button onclick={onclick}>{"Go Home"}</button>
-        </div> 
+        </div>
     }
 }
