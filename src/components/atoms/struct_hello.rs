@@ -36,4 +36,20 @@ impl Component for StructHello {
             <h1 class={self.stylesheet.clone()}>{&context.props().message}</h1>
         }
     }
+    
+    fn update(&mut self, ctx: &Context<Self>, msg: Self::Message) -> bool {
+        true
+    }
+    
+    fn changed(&mut self, ctx: &Context<Self>, _old_props: &Self::Properties) -> bool {
+        true
+    }
+    
+    fn rendered(&mut self, ctx: &Context<Self>, first_render: bool) {}
+    
+    fn prepare_state(&self) -> Option<String> {
+        None
+    }
+    
+    fn destroy(&mut self, ctx: &Context<Self>) {}
 }
