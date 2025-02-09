@@ -1,2 +1,1 @@
-pub mod custom_form;
-pub mod struct_counter;
+pub mod auth_form;

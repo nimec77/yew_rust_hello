@@ -1,27 +1,17 @@
 mod components;
-mod router;
 mod stores;
-mod display_count;
-mod increment_count;
 
-use display_count::DisplayCount;
-use increment_count::IncrementCount;
+use components::{atoms::display_auth::DisplayAuth, molecules::auth_form::AuthForm};
 use stylist::yew::styled_component;
 use yew::prelude::*;
-
-#[derive(Debug, Clone, PartialEq, Default)]
-pub struct User {
-    pub username: String,
-    pub favorite_language: String,
-}
 
 #[styled_component]
 pub fn App() -> Html {
     html! {
         <div>
             <h1>{ "Yewdux Counter" }</h1>
-            <DisplayCount />
-            <IncrementCount />
+            <AuthForm />
+            <DisplayAuth />
         </div>
     }
 }
