@@ -14,6 +14,6 @@ pub struct User {
 #[styled_component]
 pub fn App() -> Html {
     html! {
-        <StructHello />
+        <StructHello message={"Hello World from a Struct!".to_owned()} />
     }
 }
