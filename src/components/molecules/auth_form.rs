@@ -21,8 +21,16 @@ impl Reducer<AuthState> for Msg {
                 state.is_authenticated = state.password.is_some() && state.username.is_some();
                 log!("Login status: ", state.is_authenticated);
             },
-            Msg::UsernameInput(username) => state.username = Some(username),
-            Msg::PasswordInput(password) => state.password = Some(password),
+            Msg::UsernameInput(username) => if username.is_empty() {
+                state.username = None;
+            } else {
+                state.username = Some(username);
+            },
+            Msg::PasswordInput(password) => if password.is_empty() {
+                state.password = None;
+            } else {
+                state.password = Some(password);
+            },
         };
         auth_state
     }
