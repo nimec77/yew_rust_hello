@@ -1,7 +1,10 @@
 mod components;
 mod stores;
 
-use components::{atoms::display_auth::DisplayAuth, molecules::auth_form::AuthForm};
+use components::{
+    atoms::{display_auth::DisplayAuth, display_token::DisplayToken},
+    molecules::auth_form::AuthForm,
+};
 use stylist::yew::styled_component;
 use yew::prelude::*;
 
@@ -12,6 +15,7 @@ pub fn App() -> Html {
             <h1>{ "Yewdux Counter" }</h1>
             <AuthForm />
             <DisplayAuth />
+            <DisplayToken />
         </div>
     }
 }
